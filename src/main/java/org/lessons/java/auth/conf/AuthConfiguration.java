@@ -22,13 +22,15 @@ public class AuthConfiguration {
 	SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 	    
 		return 
-			http.authorizeHttpRequests(a -> a
+			http.csrf(c -> c.disable())
+				.authorizeHttpRequests(a -> a
 					.requestMatchers("/pizza/create/**").hasAuthority("ADMIN")
 					.requestMatchers("/pizza/edit/**").hasAuthority("ADMIN")
 					.requestMatchers("/pizza/delete/**").hasAuthority("ADMIN")
 					.requestMatchers("/pizza/**").hasAnyAuthority("USER", "ADMIN")
 					.requestMatchers("/offerte/**").hasAuthority("ADMIN")
 					.requestMatchers("/ingredienti/**").hasAuthority("ADMIN")
+					.requestMatchers("/api/v1/**").permitAll()
 			        .requestMatchers("/**").hasAnyAuthority("USER", "ADMIN")
 			).formLogin(f -> f.permitAll()
 			).logout(l -> l.logoutSuccessUrl("/")

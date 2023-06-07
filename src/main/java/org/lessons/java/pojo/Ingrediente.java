@@ -1,6 +1,11 @@
 package org.lessons.java.pojo;
 
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -25,7 +30,8 @@ public class Ingrediente {
 	private String descrizione;
 	
 	@ManyToMany(mappedBy = "ingredienti")
-	private List<Pizza> pizza;
+	@JsonBackReference
+	private List<Pizza> pizze;
 	
 	public Ingrediente() {}
 	
@@ -58,12 +64,12 @@ public class Ingrediente {
 		this.descrizione = descrizione;
 	}
 
-	public List<Pizza> getListaPizze() {
-		return pizza;
+	public List<Pizza> getPizze() {
+		return pizze;
 	}
 
-	public void setListaPizze(List<Pizza> lista_pizze) {
-		this.pizza = lista_pizze;
+	public void setPizze(List<Pizza> pizze) {
+		this.pizze = pizze;
 	}
 	
 	@Override

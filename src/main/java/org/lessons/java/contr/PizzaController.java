@@ -61,7 +61,7 @@ public class PizzaController {
 		model.addAttribute("ingredienti", ingredienti);
 		
 		model.addAttribute("pizza", pizza);
-		model.addAttribute("offerte_list", special_offer_pizza.getOffertaSpeciale());
+		model.addAttribute("offerte_list", special_offer_pizza.getOfferta());
 		
 		return "single-pizza";
 	}

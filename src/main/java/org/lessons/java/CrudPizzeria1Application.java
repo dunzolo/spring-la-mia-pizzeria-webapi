@@ -68,12 +68,12 @@ public class CrudPizzeria1Application implements CommandLineRunner {
 		Pizza p1 = new Pizza("Margherita", 
 				"Pizza Margherita", 
 				"https://primochef.it/wp-content/uploads/2019/08/SH_pizza_fatta_in_casa-1200x800.jpg.webp",
-				8);
+				8, i1, i2, i3);
 		
 		Pizza p2 = new Pizza("Cotto", 
 				"Pizza col Cotto", 
 				"https://efru.it/efru-upload/2020/03/pizza-prosciutto-cotto.jpg",
-				9);
+				9, i1);
 		
 		Pizza p3 = new Pizza("Crudo", 
 				"Pizza col Crudo", 

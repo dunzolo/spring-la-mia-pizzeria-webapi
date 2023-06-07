@@ -42,7 +42,7 @@ public class PizzaService {
 	public Optional<Pizza> findByIdWithSpecialOffer(int id) {
 		
 		Optional<Pizza> pizzaOpt = pizzaRepo.findById(id);
-		Hibernate.initialize(pizzaOpt.get().getOffertaSpeciale());
+		Hibernate.initialize(pizzaOpt.get().getOfferta());
 		
 		return pizzaOpt;
 	}

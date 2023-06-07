@@ -2,6 +2,10 @@ package org.lessons.java.pojo;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -30,6 +34,7 @@ public class OffertaSpeciale {
 	
 	@ManyToOne
 	@JoinColumn(nullable = false)
+	@JsonBackReference
 	private Pizza pizza;
 	
 	public OffertaSpeciale() {}

@@ -3,6 +3,10 @@ package org.lessons.java.pojo;
 import java.util.Arrays;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,6 +17,10 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 
 @Entity
+@JsonIdentityInfo(
+	    generator = ObjectIdGenerators.PropertyGenerator.class,
+	    property = "id"
+	)
 public class Pizza {
 	
 	@Id
@@ -29,7 +37,7 @@ public class Pizza {
 	private int prezzo;
 	
 	@OneToMany(mappedBy = "pizza")
-	private List<OffertaSpeciale> offerta_speciale;
+	private List<OffertaSpeciale> offerta;
 	
 	@ManyToMany
 	private List<Ingrediente> ingredienti;
@@ -40,6 +48,7 @@ public class Pizza {
 		setDescrizione(descrizione);
 		setFoto(foto);
 		setPrezzo(prezzo);
+		setIngredientis(ingredienti);
 	}
 	
 	//get e set
@@ -73,12 +82,6 @@ public class Pizza {
 	public void setPrezzo(int prezzo) {
 		this.prezzo = prezzo;
 	}
-	public List<OffertaSpeciale> getOffertaSpeciale() {
-		return offerta_speciale;
-	}
-	public void getOffertaSpeciale(List<OffertaSpeciale> offerta_speciale) {
-		this.offerta_speciale = offerta_speciale;
-	}
 	public String getFormatPrezzo() {
 		return prezzo + "€";
 	}
@@ -88,7 +91,14 @@ public class Pizza {
 	public void setIngredienti(List<Ingrediente> ingredienti) {
 		this.ingredienti = ingredienti;
 	}
-	public void setCategories(Ingrediente[] ingredienti) {
+	
+	public List<OffertaSpeciale> getOfferta() {
+		return offerta;
+	}
+	public void setOfferta(List<OffertaSpeciale> offerta) {
+		this.offerta = offerta;
+	}
+	public void setIngredientis(Ingrediente[] ingredienti) {
 		
 		setIngredienti(Arrays.asList(ingredienti));
 	}
