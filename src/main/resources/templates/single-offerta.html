@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.3/css/bootstrap.min.css}"/>
+<title>Insert title here</title>
+</head>
+<body th:object="${offerta}">
+<div class="container mt-5">
+		<div class="row border border-dark pt-5 pb-5">
+			
+			<h1 class="text-center">Dettaglio</h1>
+			<div class="col d-flex justify-content-center">
+				<div class="card" style="width: 18rem;">
+				  <div class="card-body text-center">
+				    <h5 class="card-title">[[ *{titolo} ]]</h5>
+				    <p class="card-text"><strong>Sconto:</strong> [[ *{sconto} ]]%</p>
+				    <p class="card-text"><strong>Data inizio:</strong> [[ *{dataInizio} ]]</p>
+				    <p class="card-text"><strong>Data fine:</strong> [[ *{dataFine} ]]</p>
+				  </div>
+				  <a class="btn btn-secondary" th:href="@{/offerte}">Torna alle offerte</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

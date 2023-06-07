@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.3/css/bootstrap.min.css}"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="container mt-5">
+		<div class="row border border-dark pt-5 pb-5">
+			<div class="d-flex justify-content-around">
+				<a href="/logout">LOGOUT</a>
+				<div>Username: <span sec:authentication="name"></span></div>
+			</div>
+			<h1 class="text-center">Le mie pizze</h1>
+			<div class="col d-flex justify-content-center my-3">
+				<a sec:authorize="hasAuthority('ADMIN')" class="btn btn-primary me-3" th:href="@{/pizza/create}">Aggiungi nuova pizza</a>
+				<a sec:authorize="hasAuthority('ADMIN')" class="btn btn-secondary me-3" th:href="@{/offerte}">Vai a offerte</a>
+				<a sec:authorize="hasAuthority('ADMIN')" class="btn btn-secondary" th:href="@{/ingredienti}">Vai ad ingredienti</a>
+			</div>
+			<form class="text-center" th:action="@{/pizza/nome}" method="POST">
+				<label>Nome</label>
+				<input type="text" name="nome" th:value="${nome}">
+				<input type="submit" value="Cerca">
+			</form>
+			<div class="col mt-3 d-flex justify-content-center text-center"  th:each="pizza : ${pizzaList}" th:object="${pizza}">
+				<div class="card" style="width: 18rem;">
+				  <div class="card-body">
+				    <h5 class="card-title">[[ *{nome} ]]</h5>
+				    <a th:href="@{/pizza/{id} (id=*{id})}" class="btn btn-square btn-primary"><i class="fa-solid fa-eye"></i></a>
+				    <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/pizza/edit/{id} (id=*{id})}" class="btn btn-square btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>
+				    <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/pizza/delete/{id} (id=*{id})}" class="btn btn-square btn-danger"><i class="fa-solid fa-trash"></i></a>
+				  </div>
+				</div>
+			</div>
+			<h2 th:if="${pizzaList.isEmpty()}">Non sono presenti pizze</h2>
+		</div>
+	</div>
+</body>
+</html>

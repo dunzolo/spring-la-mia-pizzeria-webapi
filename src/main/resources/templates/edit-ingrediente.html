@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.3/css/bootstrap.min.css}"/>
+<title>Insert title here</title>
+</head>
+<body th:object="${ingrediente}">
+	<div class="container mt-5">
+		<div class="row border border-dark pt-5 pb-5">
+			<h1 class="text-center">Modifica l'ingrediente</h1>
+			<div class="col d-flex justify-content-center my-3">
+				<form class="w-50" th:action="@{/offerta/edit/{id} (id=*{id})}" method="POST">
+					<div class="mb-3">
+				    <label class="form-label">Nome</label>
+				    <input type="text" class="form-control" name="nome" th:value="*{nome}">
+				  </div>
+				  <div class="mb-3">
+				    <label class="form-label">Descrizione</label>
+				    <input type="text" class="form-control" name="descrizione" th:value="*{descrizione}">
+				  </div>
+					<a class="btn btn-secondary" th:href="@{/ingredienti}">Torna ad ingredienti</a>
+				  	<button type="submit" class="btn btn-success">Aggiorna</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
