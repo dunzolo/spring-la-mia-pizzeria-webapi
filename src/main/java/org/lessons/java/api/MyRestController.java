@@ -82,6 +82,8 @@ public class MyRestController {
 //				);
 //		}
 		
+		System.err.println(pizza);
+		
 		pizza = pizzaService.savePizza(pizza);
 		
 		return new ResponseEntity<>(
