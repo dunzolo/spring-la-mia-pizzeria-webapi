@@ -61,6 +61,10 @@ public class MyRestController {
 		
 		Optional<Pizza> optPizza = pizzaService.findPizzaById(id);
 		
+		//se inserisco un id di una pizza che non esiste
+		if(optPizza.isEmpty())
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	
 		Pizza pizza = optPizza.get();
 		
 		return new ResponseEntity<>(new PizzaDto(pizza), HttpStatus.OK);
@@ -110,6 +114,9 @@ public class MyRestController {
 		}
 		
 		Pizza pizza = optPizza.get();
+		
+		pizza.getIngredienti().clear();
+		pizzaService.savePizza(pizza);
 		pizzaService.deletePizza(pizza);
 		
 		return new ResponseEntity<>(

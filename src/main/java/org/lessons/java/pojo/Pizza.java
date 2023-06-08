@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -36,7 +37,7 @@ public class Pizza {
 	@Min(value = 0, message = "Il prezzo non può essere minore di 0")
 	private int prezzo;
 	
-	@OneToMany(mappedBy = "pizza")
+	@OneToMany(mappedBy = "pizza", cascade = CascadeType.REMOVE)
 	private List<OffertaSpeciale> offerta;
 	
 	@ManyToMany
